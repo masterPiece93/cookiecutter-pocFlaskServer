@@ -16,7 +16,7 @@ class SecurityRelatedVariables:
 
     SECRET_KEY = secrets.token_hex()
 
-class Config(ServerStartupVariables):
+class Config(ServerStartupVariables, SecurityRelatedVariables):
     """
     main configuration variables
     """
