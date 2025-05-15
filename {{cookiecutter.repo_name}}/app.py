@@ -1,8 +1,13 @@
+import logging
 from flask import Flask
 from src.generic_routes import generic_bp
 from src.api.sample_api_routes import sample_api_bp
 from src.api.v1.sample_versioned_routes import sample_api_v1_bp
 from src.api.v2.sample_versioned_routes import sample_api_v2_bp
+
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(levelname)s: %(message)s')
+logger = logging.getLogger(__name__)
+logger.debug("Line 16 debuger is working")
 
 app = Flask(__name__)
 app.config.from_object('setup.config.Config')
