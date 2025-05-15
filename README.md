@@ -25,7 +25,7 @@ this will create a project structre for a flask server for a quick poc .
     - exmaple
 
         ```sh
-        cookiecutter cookiecutter https://github.com/masterPiece93/cookiecutter-pocFlaskServer.git
+        cookiecutter https://github.com/masterPiece93/cookiecutter-pocFlaskServer.git
         ```
 ### TODO:
 
