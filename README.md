@@ -2,17 +2,31 @@
 
 this will create a project structre for a flask server for a quick poc .
 
-Installing cookiecutter
 
-```sh
-pip install cookiecutter
-```
+### How to Install
 
-Running 
+- Create a venv
+    ```sh
+    python3 -m venv venv
+    ```
 
-```sh
-cookiecutter <name>
-```
+- Installing cookiecutter
+
+    ```sh
+    pip install cookiecutter
+    ```
+
+- Running 
+
+    ```sh
+    cookiecutter <name/git-link>
+    ```
+
+    - exmaple
+
+        ```sh
+        cookiecutter cookiecutter https://github.com/masterPiece93/cookiecutter-pocFlaskServer.git
+        ```
 ### TODO:
 
 - python version input
