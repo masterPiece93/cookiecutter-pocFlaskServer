@@ -1,4 +1,4 @@
-import os
+import secrets
 from environs import env
 
 env.read_env()
@@ -14,7 +14,7 @@ class ServerStartupVariables:
 
 class SecurityRelatedVariables:
 
-    SECRET_KEY = os.urandom(24)
+    SECRET_KEY = secrets.token_hex()
 
 class Config(ServerStartupVariables):
     """
