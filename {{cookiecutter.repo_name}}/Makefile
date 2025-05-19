@@ -21,10 +21,10 @@ venv: # creates python virtual environment.
 install: # install all the required dependencies.
 	$(VENV_PIP) install -r requirements.py3.10._.txt
 
-test: # executes all the tests. # -- not yet configured
+test: check-env # executes all the tests. # -- not yet configured
 	# No Test Configurantion . Need to add .
 
-run: # starts the project
+run: check-env # starts the project
 	$(VENV_PYTHON3_EXECUTABLE) app.py
 
 setup: venv install # executes setup on your machine.
@@ -42,3 +42,41 @@ clean: soft-clean # completely cleaning the additional resources created for exe
 
 help: # Show help for each of the Makefile recipes.
 	@grep -E '^[a-zA-Z0-9 -]+:.*#'  Makefile | sort | while read -r l; do printf "\033[1;32m$$(echo $$l | cut -f 1 -d':')\033[00m:$$(echo $$l | cut -f 2- -d'#')\n"; done
+
+check-env: .env
+	@ echo "checking for .env file ..."
+
+	@ ## | --- check for existance of '.env' file --- | ##
+
+	@if [ -s .env ]; then \
+		echo "\t - successfully found '.env' file"; \
+	else \
+		echo -e "\e[31m .env file not exists. Please create it from .env.template file \e[0m"; \
+		exit 0; \
+	fi \
+
+	@ ## | ------------------------------------------ | ##
+
+	@ ## | --- check for important variables in environment file --- | ##
+
+	@ # DEBUG < .env variable #
+	@ # NOT WORKING : ^DEBUG[ \t]*=[ \t]*[a-zA-Z0-9\"\@\!\#\$\%\^\&\*\(\)\_\-\=\+\[\]\{\}\:\;|'\/\.\,\?\\]+
+
+	@if grep -Eq "^DEBUG[ \t]*=[ \t]*[a-zA-Z]+" ".env"; then \
+		continue; \
+	else \
+		echo -e "\e[31m Varibale 'DEBUG' not-found / in-valid in .env file \e[0m"; \
+		exit 1; \
+	fi \
+
+	@ # PORT < .env variable #
+	@if grep -Eq "^PORT[ \t]*=[ \t]*[0-9]+$\" ".env"; then \
+		continue; \
+	else \
+		echo -e "\e[31m Varibale 'PORT' not-found / in-valid in .env file \e[0m"; \
+		exit 1; \
+	fi \
+
+	@echo "\t - successfully scanned '.env' file for all required env variables"
+	@ ## | -------------------------------------------------------- | ##
+
