@@ -29,7 +29,7 @@ run: check-env # starts the project
 
 setup: venv install # executes setup on your machine.
 
-all: setup test run # executing complete setup , test & run from scratch.
+all: check-env setup test run # executing complete setup , test & run from scratch.
 
 soft-clean: # only cleaning the temporary & cache files
 	bash -c "find . -type d -name "__pycache__" -print0 | xargs -0 rm -rf"
@@ -43,7 +43,7 @@ clean: soft-clean # completely cleaning the additional resources created for exe
 help: # Show help for each of the Makefile recipes.
 	@grep -E '^[a-zA-Z0-9 -]+:.*#'  Makefile | sort | while read -r l; do printf "\033[1;32m$$(echo $$l | cut -f 1 -d':')\033[00m:$$(echo $$l | cut -f 2- -d'#')\n"; done
 
-check-env: .env
+check-env:
 	@ echo "checking for .env file ..."
 
 	@ ## | --- check for existance of '.env' file --- | ##
@@ -51,8 +51,8 @@ check-env: .env
 	@if [ -s .env ]; then \
 		echo "\t - successfully found '.env' file"; \
 	else \
-		echo -e "\e[31m .env file not exists. Please create it from .env.template file \e[0m"; \
-		exit 0; \
+		echo -e "\e[1;31m .env file not exists. Please create it from .env.template file \e[0m"; \
+		exit 1; \
 	fi \
 
 	@ ## | ------------------------------------------ | ##
@@ -65,7 +65,7 @@ check-env: .env
 	@if grep -Eq "^DEBUG[ \t]*=[ \t]*[a-zA-Z]+" ".env"; then \
 		continue; \
 	else \
-		echo -e "\e[31m Varibale 'DEBUG' not-found / in-valid in .env file \e[0m"; \
+		echo -e "ERROR\n\e[1;31m Varibale 'DEBUG' in .env file IS not found or found invalid  \e[0m \n\t- \e[31m please run 'make about-env' to understand about rules for making an .env file \e[0m"; \
 		exit 1; \
 	fi \
 
@@ -73,10 +73,36 @@ check-env: .env
 	@if grep -Eq "^PORT[ \t]*=[ \t]*[0-9]+$\" ".env"; then \
 		continue; \
 	else \
-		echo -e "\e[31m Varibale 'PORT' not-found / in-valid in .env file \e[0m"; \
+		echo -e "ERROR\n\e[1;31m Varibale 'PORT' in .env file IS not found or found invalid \e[0m \n\t- \e[31m please run 'make about-env' to understand about rules for making an .env file \e[0m"; \
 		exit 1; \
 	fi \
 
 	@echo "\t - successfully scanned '.env' file for all required env variables"
 	@ ## | -------------------------------------------------------- | ##
 
+help-env:
+	@# This is help on creating a valid bare-minimum .env file.
+
+	@echo "\n"
+
+	@echo "| How to Make Env File"
+	@echo "\t| spot a file named '.env.template' in your project directory"
+	@echo "\t| create a file named '.env' alongside '.env.template'"
+	@echo "\t\t- copy the contents from '.env.template' into this newly created '.env' file"
+	
+	@echo "\n"
+
+	@echo "| Rules on mandatory variables"
+	@echo "\t| DEBUG variable"
+	@echo "\t\t- this is a mandatory variable"
+	@echo "\t\t- allowed values are - true , false"
+	@echo "\t\t- example - DEBUG=true"
+	
+	@echo "\t| PORT variable"
+	@echo "\t\t- this is a mandatory variable"
+	@echo "\t\t- allowed values are - any positive integer"
+	@echo "\t\t- example - PORT=5000"
+	
+	@echo "\n"
+	
+	
