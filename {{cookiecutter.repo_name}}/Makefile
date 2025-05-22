@@ -1,5 +1,5 @@
 PYTHON_VERSION ?= 3.10.0 # Default Python version
-VENV_NAME ?= venv-{{ cookiecutter.repo_name }}
+VENV_NAME ?= venv-{{ cookiecutter.repo_slug }}
 PYENV_ROOT := $(HOME)/.pyenv
 PATH := $(PYENV_ROOT)/bin:$(PATH)
 VENV_ROOT := ${HOME}/.pyenv/versions/${VENV_NAME}
