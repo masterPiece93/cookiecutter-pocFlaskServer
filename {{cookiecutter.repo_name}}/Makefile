@@ -51,7 +51,7 @@ check-env:
 	@if [ -s .env ]; then \
 		echo "\t - successfully found '.env' file"; \
 	else \
-		echo -e "\e[1;31m .env file not exists. Please create it from .env.template file \e[0m"; \
+		echo -e "\e[1;31m .env file not exists. Please create it from .env.template file \e[0m" \n\t- \e[31m please run 'make help-env' to understand the process of .env file creation \e[0m"; \
 		exit 1; \
 	fi \
 
@@ -65,7 +65,7 @@ check-env:
 	@if grep -Eq "^DEBUG[ \t]*=[ \t]*[a-zA-Z]+" ".env"; then \
 		continue; \
 	else \
-		echo -e "ERROR\n\e[1;31m Varibale 'DEBUG' in .env file IS not found or found invalid  \e[0m \n\t- \e[31m please run 'make about-env' to understand about rules for making an .env file \e[0m"; \
+		echo -e "ERROR\n\e[1;31m Varibale 'DEBUG' in .env file IS not found or found invalid  \e[0m \n\t- \e[31m please run 'make help-env' to understand about rules for making an .env file \e[0m"; \
 		exit 1; \
 	fi \
 
@@ -73,7 +73,7 @@ check-env:
 	@if grep -Eq "^PORT[ \t]*=[ \t]*[0-9]+$\" ".env"; then \
 		continue; \
 	else \
-		echo -e "ERROR\n\e[1;31m Varibale 'PORT' in .env file IS not found or found invalid \e[0m \n\t- \e[31m please run 'make about-env' to understand about rules for making an .env file \e[0m"; \
+		echo -e "ERROR\n\e[1;31m Varibale 'PORT' in .env file IS not found or found invalid \e[0m \n\t- \e[31m please run 'make help-env' to understand about rules for making an .env file \e[0m"; \
 		exit 1; \
 	fi \
 
