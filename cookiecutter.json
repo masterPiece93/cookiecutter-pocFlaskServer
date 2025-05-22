@@ -1,7 +1,15 @@
 {
+    "default_context": {
+        "contact_developer": {
+            "name": "Ankit Yadav",
+            "email": "ankit8290@gmail.com",
+            "linkedin_id": "ankit-yadav-b3157b89"
+        }
+    },
     "full_name": "Ankit Yadav",
     "repo_name": "server",
     "app_title": "Backend Server",
     "short_description": "This is a web application server",
+    "\n": "Next option is for 'repo_slug')\n\t-It is auto calculated from repo_name.\n\t-only enter value if you have a better value in mind.\n\t-Your value must be a `underscore(_)` seperated string.\n (Now press enter to continue",
     "repo_slug": "{{ cookiecutter.repo_name.lower().replace(' ', '_').replace('-', '_') }}"
 }

@@ -136,3 +136,10 @@ make install
 ### Container Setup
 
 `TODO: PENDING`
+
+---
+<br>
+
+# ~ `{{cookiecutter.default_context.contact_developer.name}}` 
+
+**| `Email` : _{{cookiecutter.default_context.contact_developer.email}}_ | `Linkedin` : _{{cookiecutter.default_context.contact_developer.linkedin_id}}_ |**
