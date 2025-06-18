@@ -41,6 +41,8 @@ this will create a project structre for a flask server for a quick poc .
 - enahnce Makefile
     - auto generate .env from .env.template if not exists
 
+- `check-env` makefile target not working expectedly .
+
 # REFERENCES
 
 [tutorial](https://raphael.codes/blog/create-your-own-cookiecutter-template/)

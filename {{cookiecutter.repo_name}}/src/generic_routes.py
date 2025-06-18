@@ -23,11 +23,33 @@ generic_bp = Blueprint(
 
 @generic_bp.route('/')
 def root():
-    heading: str = "{{cookiecutter.app_title}}"
-    sub_heading: str = "{{cookiecutter.short_description}}"
+    heading: str = "Backend Server"
+    sub_heading: str = "This is a web application server"
     return f"""
-    <h>{heading}</h>
-    <p>{sub_heading}</p>
+    <div style="background: floralwhite;display: flex;flex-direction: column;">
+        <h1 style="text-align: center; margin-bottom: 0.1em;">{heading}</h1>
+        <p style="text-align: center">{sub_heading}</p>
+    </div
+    <hr>
+
+    <h2>Api's Available</h2>
+    <div>
+        <a href="{url_for('generic.health')}"> health </a>
+    </div>
+    <div>
+        <a href="{url_for('generic.ping')}"> ping </a>
+    </div>
+    
+    <h3>V1 Routes</h3>
+    <div>
+        <a href="{url_for('sample_api_v1.sample_route')}"> sample route </a>
+    </div>
+
+    <h3>V2 Routes</h3>
+    <div>
+        <a href="{url_for('sample_api_v2.sample_route')}"> sample route </a>
+    </div>
+    
     """
 
 @generic_bp.route('/health')
